@@ -9,8 +9,10 @@ def fabric_meters(
     hem_bottom: float,
     fabric_width: float,
 ) -> dict:
-    if fabric_width <= 0:
-        raise ValueError("fabric width required")
+    if fabric_width == 0:
+        raise ValueError("fabric width is zero; a positive fabric width is required")
+    if fabric_width < 0:
+        raise ValueError("fabric width is negative; a positive fabric width is required")
     finished_w = float(window_w) * float(fullness)
     panels = max(1, ceil_units(finished_w / float(fabric_width)))
     cut_h = float(window_h) + float(hem_top) + float(hem_bottom)
